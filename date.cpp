@@ -8,6 +8,6 @@ void DateStruct::readDate(std::string& dateStr) {
 	yy = stoi(dateStr.substr(6, 8));
 }
 
-void DateStruct::printDate() {
-	std::cout << dd << mm << yy;
+void DateStruct::printDate(std::ostream& out) {
+	out << "Дата: " << dd << '.' << mm << '.' << yy;
 }
