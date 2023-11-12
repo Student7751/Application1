@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include<fstream>
 #include<vector>
 #include<string>
@@ -12,10 +12,21 @@ int main()
 	std::ifstream file("test.txt");
 
 	std::vector<Pressure> pvec;
-
+	
 	Pressure data;
 
-	data.readPressure(file, pvec);
+	std::string error;
+
+	try {
+		
+		data.readPressure(file, pvec);
+	}
+
+	catch (std::runtime_error &errorMessage) {
+		error = errorMessage.what();
+	}
 
 	data.printPressure(pvec, std::cout);
+
+	std::cout << error;
 }
