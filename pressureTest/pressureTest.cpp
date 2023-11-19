@@ -15,8 +15,6 @@ namespace pressureTest
 		TEST_METHOD(correctValueTest)
 		{
 			
-			//std::stringstream a;
-			
 			Pressure x;
 
 			x.CorrectValue(32, 5);
@@ -45,7 +43,7 @@ namespace pressureTest
 			date.setMM(12);
 			date.setYY(21);
 			
-			std::string d = "Дата: 12.12.21";
+			std::string d = "Р”Р°С‚Р°: 12.12.21";
 
 			std::stringstream x;
 			date.printDate(x);
@@ -83,11 +81,47 @@ namespace pressureTest
 			pr.setHigh(33.3);
 			pr.setValue(45);
 
-			std::string d = "Дата: 12.12.21 Высота: 33.3 Значение:  45\n";
+			std::string d = "Р”Р°С‚Р°: 12.12.21 Р’С‹СЃРѕС‚Р°: 33.3 Р—РЅР°С‡РµРЅРёРµ:  45\n";
 			
 			std::stringstream x;
 			pr.print(x);
 			Assert::AreEqual(x.str(), d);
+		}
+
+		TEST_METHOD(correctIsLeapYear) {
+			DateStruct date;
+			
+			date.isLeapYear(2024);
+		}
+
+		TEST_METHOD(correctCorrectFunction) {
+			DateStruct date;
+
+			date.Correct(12, 12, 12);
+		}
+
+		TEST_METHOD(invalidCorrectFunction) {
+			DateStruct date;
+
+			try {
+				date.Correct(-12, 22, 9);
+			}
+			catch (const std::runtime_error& message) {
+				return;
+			}
+
+			Assert::Fail();
+		}
+		TEST_METHOD(invalidIsLeapYear) {
+			try {
+				DateStruct date;
+				date.isLeapYear(-2019);
+			}
+			catch (const std::runtime_error& message) {
+				return;
+			}
+
+			Assert::Fail();
 		}
 
 		TEST_METHOD(invalidValueTest)
@@ -134,7 +168,7 @@ namespace pressureTest
 			date.setMM(12);
 			date.setYY(21);
 
-			std::string d = "Дата: 12.12.21";
+			std::string d = "Р”Р°С‚Р°: 12.12.21";
 
 			std::stringstream x;
 			date.printDate(x);
@@ -156,7 +190,7 @@ namespace pressureTest
 			pr.setHigh(33.3);
 			pr.setValue(45);
 
-			std::string d = "Дата: 12.12.21 Высота: 33.3 Значение:  45\n";
+			std::string d = "Р”Р°С‚Р°: 12.12.21 Р’С‹СЃРѕС‚Р°: 33.3 Р—РЅР°С‡РµРЅРёРµ:  45\n";
 
 			std::stringstream x;
 			pr.print(x);
