@@ -7,6 +7,7 @@
 
 #include "pressure.h"
 
+//Определение функции считывания данных
 Pressure Pressure::createFromStream(std::istream& in)
 {
 	Pressure pressureData;
@@ -20,62 +21,69 @@ Pressure Pressure::createFromStream(std::istream& in)
 
 	in >> heigh;
 	in >> value;
-
+	
+	//Проверка на корректность вводимых значений
 	pressureData.CorrectValue(heigh, value);
 
 	pressureData.heigh = heigh;
 	pressureData.value = value;
 
+	//Проверка на корректность считываемой даты
 	pressureData.Date.CorrectDate(DATE);
 
+	//Запись даты, в случае, если она корректна
 	pressureData.Date.readDate(DATE);
 
 	return pressureData;
 }
 
 
+//Определение геттера высоты
 float Pressure::getHigh() {
-	return this->heigh;
+	return heigh;
 }
-
+//Определение геттера значения
 int Pressure::getValue() {
-	return this->value;
+	return value;
 }
-
+//Определение сеттера высоты
 void Pressure::setHigh(float val) {
 	CorrectValue(val, 1);
-	this->heigh = val;
+	heigh = val;
 }
-
+//Определение сеттера значения
 void Pressure::setValue(int val) {
 	CorrectValue(1, val);
-	this->value = val;
+	value = val;
 }
 
-
+//Определение геттера даты
 DateStruct Pressure::getDate() {
-	return this->Date;
+	return Date;
 }
-
+//Определение сеттера даты
 void Pressure::setDate(DateStruct date) {
 	
 	date.Correct(date.getDD(), date.getMM(), date.getYY());
 
-	this->Date = date;
+	Date = date;
 }
 
+//Определние функции проверки на коррекность вводимых значений
 void Pressure::CorrectValue(float heigh, int value) {
-	if (heigh <= 0) throw std::runtime_error("������� ������� ������! ��������� ������������ ������!");
-	if (value <= 0) throw std::runtime_error("������� ������� �������� ��������! ��������� ������������ ������!");
+	if (heigh <= 0) throw std::runtime_error("Неверно введена высота! Проверьте корректность данных!");
+	if (value <= 0) throw std::runtime_error("Неверно введено значение давления! Проверьте корректность данных!");
 }
 
+//Определение функции чтения данных
 void Pressure::print(std::ostream& out)
 {
 	Date.printDate(out);
 
-	out << " ������: " << heigh << " ��������:  " << value << "\n";
+	out << " Высота: " << heigh << " Значение:  " << value << "\n";
 }
 
+//Определение функции считывания данных из файла
 void Pressure::readPressure(std::istream& file, std::vector<Pressure>& pvec) {
 	while (!file.eof()) {
 		Pressure pressureData = Pressure::createFromStream(file);
@@ -83,6 +91,7 @@ void Pressure::readPressure(std::istream& file, std::vector<Pressure>& pvec) {
 	}
 }
 
+//Определение функции вывода результата
 void Pressure::printPressure(std::vector<Pressure>& pvec, std::ostream &out) {
 	for (auto& data : pvec) {
 		data.print(out);
