@@ -1,3 +1,7 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
 #include"pch.h"
 #include<fstream>
 #include<vector>
@@ -70,9 +74,9 @@ void Pressure::setDate(DateStruct date) {
 }
 
 //Определние функции проверки на коррекность вводимых значений
-void Pressure::CorrectValue(float heigh, int value) {
-	if (heigh <= 0) throw std::runtime_error("Неверно введена высота! Проверьте корректность данных!");
-	if (value <= 0) throw std::runtime_error("Неверно введено значение давления! Проверьте корректность данных!");
+void Pressure::CorrectValue(float h, int v) {
+	if (h <= 0) throw std::runtime_error("Неверно введена высота! Проверьте корректность данных!");
+	if (v <= 0) throw std::runtime_error("Неверно введено значение давления! Проверьте корректность данных!");
 }
 
 //Определение функции чтения данных
