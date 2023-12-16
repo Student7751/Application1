@@ -1,3 +1,7 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
 #include"pch.h"
 #include "date.h"
 #include<string>
@@ -60,9 +64,9 @@ bool DateStruct::isLeapYear(int year) {
 }
 
 //Определение функции проверки даты на корректность
-void DateStruct::Correct(int dd, int mm, int yy) {
+void DateStruct::Correct(int day, int month, int year) {
     int maxDaysInMonth = 31;
-    switch (mm) {
+    switch (month) {
     case 2:
         maxDaysInMonth = isLeapYear(yy) ? 29 : 28;
         break;
@@ -74,9 +78,9 @@ void DateStruct::Correct(int dd, int mm, int yy) {
         break;
     }
 
-    if (dd < 1 || !(dd <= maxDaysInMonth)) throw std::runtime_error("День ввёден неверно! Проверьте корректность входных данных");
-    if (mm < 1 || mm > 12) throw std::runtime_error("Месяц ввёден неверно! Проверьте корректность входных данных");
-    if (yy < 0 || yy > 99) throw std::runtime_error("Год ввёден неверно! Проверьте корректность входных данных");
+    if (day < 1 || !(day <= maxDaysInMonth)) throw std::runtime_error("День ввёден неверно! Проверьте корректность входных данных");
+    if (month < 1 || month > 12) throw std::runtime_error("Месяц ввёден неверно! Проверьте корректность входных данных");
+    if (year < 0 || year > 99) throw std::runtime_error("Год ввёден неверно! Проверьте корректность входных данных");
 }
 
 //Функция проверки считывания даты из строки на корректность
