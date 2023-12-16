@@ -40,10 +40,10 @@ namespace pressureTest
 			DateStruct date;
 			
 			date.setDD(12);
-			date.setMM(12);
+			date.setMM(11);
 			date.setYY(21);
 			
-			std::string d = "Дата: 12.12.21";
+			std::string d = "Дата: 12.11.21";
 
 			std::stringstream x;
 			date.printDate(x);
@@ -70,7 +70,6 @@ namespace pressureTest
 		TEST_METHOD(correctPressurePrintTest) {
 			Pressure pr;
 			DateStruct date;
-			std::vector<Pressure> pvec;
 
 			date.setDD(12);
 			date.setMM(12);
@@ -178,8 +177,6 @@ namespace pressureTest
 		TEST_METHOD(invalidPressurePrintTest) {
 			Pressure pr;
 			DateStruct date;
-			std::vector<Pressure> pvec;
-
 
 			date.setDD(13);
 			date.setMM(12);
